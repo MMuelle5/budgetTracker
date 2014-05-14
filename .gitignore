@@ -3,6 +3,10 @@ bin/
 bin-debug/
 bin-release/
 node_modules/
+hooks/
+platforms/
+plugins/
+merges/
 
 # Other files and folders
 .settings/
