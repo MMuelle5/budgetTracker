@@ -3,8 +3,11 @@ var AppRouter = Backbone.Router.extend({
 
     routes:{
         "":"home",
+        "home":"home",
         "options":"options",
-        "changeBalance":"changeBalance"
+        "changeBalance":"changeBalance",
+        "changeAccount":"changeAccount",
+        "addAccount":"addAccount"
     },
 
     initialize:function () {
@@ -18,18 +21,33 @@ var AppRouter = Backbone.Router.extend({
 
     home:function () {
         console.log('#home');
-        this.changePage(new HomeView());
+        this.checkLoggedIn(new HomeView(),false);
+        
+    	// this.changePage();
     },
 
     options:function () {
         console.log('#options');
-        this.changePage(new OptionsView());
+        this.checkLoggedIn(new OptionsView(),false);
     },
 
     changeBalance:function () {
         console.log('#changeBalance');
-        this.changePage(new ChangeBalanceView());
+    	// this.changePage(new ChangeBalanceView());
+        this.checkLoggedIn(new ChangeBalanceView({model: new PositionModel()}),true);
     },
+    
+    changeAccount:function() {
+        console.log('#changeAccount');
+        this.accList = new AccountCollection();
+        this.checkLoggedIn(new ChangeAccountView({collection: this.accList}),true);
+    },
+    
+    addAccount:function() {
+        console.log('#addAccount');
+        this.checkLoggedIn(new AddAccountView({model: new AccountModel()}),true);
+    },
+    
 
     changePage:function (page) {
         $(page.el).attr('data-role', 'page');
@@ -42,6 +60,39 @@ var AppRouter = Backbone.Router.extend({
             this.firstPage = false;
         }
         $.mobile.changePage($(page.el), {changeHash:false, transition: transition});
+    },
+    
+    checkLoggedIn: function(newView, isAllowedWithoutAccId) {
+    	
+    	$that = this;
+    	$isLoggedIn = "";
+    	$ret = $.getJSON( "http://www.moledor.ch/rest/v1/isLoggedIn?callback=?", function( data ) {
+    		$retVal = JSON.parse(data);
+    		console.log($retVal);
+		    if(!$retVal.login) {
+		    	launchBrowser();
+		        // console.log('#login');
+		        // this.changePage(launchBrowser());
+		        $isLoggedIn = false;
+		    }
+			else {
+				$isLoggedIn = true;
+			}
+    	});
+    	
+		$ret.done(function(){
+			if($isLoggedIn) {
+				if((selAccountId != null && selAccountId != '') || isAllowedWithoutAccId) {
+					$that.changePage(newView);
+				}
+				else {
+					$that.changePage(new OptionsView());
+				}
+			}
+			else {
+				$that.changePage(new LoginView());
+			}
+		});
     }
 
 });

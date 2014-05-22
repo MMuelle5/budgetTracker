@@ -11,6 +11,7 @@ window.HomeView = Backbone.View.extend({
 		
 		this.posCol = new PositionCollection();
 		var posColView = new PositionColView({collection: this.posCol});
+		that.$el.find(".contentTable").html("");
 		that.$el.find(".contentTable").append(posColView.render().el);
 		
 		return that;
@@ -21,16 +22,6 @@ window.HomeView = Backbone.View.extend({
 window.OptionsView = Backbone.View.extend({
 
 	template : _.template($('#options').html()),
-
-	render : function(eventName) {
-		$(this.el).html(this.template());
-		return this;
-	}
-});
-
-window.ChangeBalanceView = Backbone.View.extend({
-
-	template : _.template($('#changeBalance').html()),
 
 	render : function(eventName) {
 		$(this.el).html(this.template());

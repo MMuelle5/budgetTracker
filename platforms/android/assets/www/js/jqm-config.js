@@ -1,5 +1,5 @@
 $(document).bind("mobileinit", function () {
-    $.mobile.ajaxEnabled = false;
+    $.mobile.ajaxEnabled = true;
     $.mobile.linkBindingEnabled = false;
     $.mobile.hashListeningEnabled = false;
     $.mobile.pushStateEnabled = false;

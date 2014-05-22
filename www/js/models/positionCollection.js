@@ -1,7 +1,9 @@
 window.PositionCollection = Backbone.Collection.extend({
 	model: PositionModel,
-	url: 'http://localhost/rest/v1/budget/22/positions?callback=?',
-	
+	url: function() {
+		$url = 'http://www.moledor.ch/rest/v1/accounts/'+selAccountId+'/positions?callback=?';
+		return $url;
+	},
 	initialize: function(){
 	    // this.on('remove', this.hide);
 	    
