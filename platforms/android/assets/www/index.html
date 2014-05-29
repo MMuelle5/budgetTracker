@@ -8,9 +8,16 @@
     <!-- The Templates -->
     <script type="text/template" id="login">
     	
+        <div data-role="header">
+            <h1>Einloggen</h1>
+            <a href="#" onclick="launchBrowser();" class="ui-btn-right">Login</a>
+        </div>
 <!-- 	<a href="#" onclick="console.log('geklickt!');window.plugins.childBrowser.openExternal('http://localhost/rest/login.php')">einloggen</a> -->
 	
-		Bitte loggen Sie sich ein: <a href="#" onclick="launchBrowser();">einloggen</a>
+		Bitte loggen Sie sich ein.<br/>
+		<a href="#" onclick="launchBrowser();" class="ui-btn">Login</a>
+            
+<!-- 		<a href="#loginPopup" class="ui-btn" data-rel="popup"  data-position-to="window">Login</a> -->
     	
     </script>
     	
@@ -18,6 +25,7 @@
 
         <div data-role="header">
             <h1>Kontof&uuml;hrung - &Uuml;bersicht</h1>
+            <a href="#" onclick="launchBrowser();" class="back ui-btn-right">Login</a>
         </div>
 
         <div data-role="content">
@@ -33,8 +41,8 @@
     <script type="text/template" id="options">
 
         <div data-role="header">
-            <a href="#" data-icon="back" class="back ui-btn-left">Back</a>
             <h1>Optionen</h1>
+            <a href="#" onclick="launchBrowser();" class="back ui-btn-right">Login</a>
         </div>
 
         <div data-role="content">
@@ -52,6 +60,7 @@
         <div data-role="header">
             <a href="#" data-icon="back" class="back ui-btn-left">Back</a>
             <h1>Einbezahlt/Abgehoben</h1>
+            <a href="#" onclick="launchBrowser();" class="back ui-btn-right">Login</a>
         </div>
 
         <div data-role="content">
@@ -125,11 +134,12 @@
     <script src="lib/jquery-1.7.1.min.js"></script>
     <script src="js/jqm-config.js"></script>
     <script src="lib/jquery.mobile-1.0.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../cordova-3.4.0.js"></script>
     <script src="lib/underscore-min.js"></script>
     <script src="lib/backbone-min.js"></script>
-<!--     <script src="lib/cordova.js"></script>
+<!--     <script src="lib/cordova.js"></script> -->
     <script src="lib/phonegap.js"></script>
-    <script src="lib/childBrowser.js"></script>   -->    
+<!--     <script src="lib/childBrowser.js"></script>      -->
     <script src="js/models/positionModel.js"></script>
     <script src="js/models/positionCollection.js"></script>
     <script src="js/models/accountModel.js"></script>
@@ -143,6 +153,11 @@
     <script src="js/views/changeAccount.js"></script>
     
 	<script type="text/javascript">
+	$( document ).bind( "mobileinit", function() {
+	    // Make your jQuery Mobile framework configuration changes here!
+	
+	    $.mobile.allowCrossDomainPages = true;
+	});
 		// $( document ).ready(function(){
 			// $obj = "";
 	    	// $.getJSON( "http://localhost/rest/v1/isConnected?callback=?", function( data ) {
@@ -162,18 +177,28 @@
             // window.plugins.childBrowser.showWebPage('http://www.woerger.ch',
             // { showLocationBar: true });
             
-            var popup = window.open('http://www.moledor.ch/rest/login.php', '_blank', 'location=yes');
-            
-		    var monitor = setInterval(function() {
-		
-		        if (popup.closed) {
-		            document.location.reload()
-		        }
-		        else {
-		        	console.log('slafen');
-		        }
-		
-		    }, 100);
+            var popup = window.open('http://www.moledor.ch/rest/login2.php', '_blank', 'location=yes');
+//             
+	         // popup.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
+	         // popup.addEventListener('loadstop', function(event) { alert('stop: ' + event.url); });
+	         // popup.addEventListener('loaderror', function(event) { alert('error: ' + event.message); });
+	         // popup.addEventListener('exit', function(event) { alert(event.type); });
+	         
+	         // var popup = window.open('http://www.moledor.ch/rest/login.php', '_self', 'location=yes');
+	         // window.plugins.childBrowser.showWebPage('http://www.moledor.ch/rest/login.php', { showNavigationBar: true });
+		    // var monitor = setInterval(function() {
+// 		
+		        // if (popup.closed) {
+		            // document.location.reload()
+		        // }
+// 		
+		    // }, 100);
+		    
+		    // var popup = window.open('popup.html', '_self', 'location=yes');
+	         // popup.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
+	         // popup.addEventListener('loadstop', function(event) { alert('stop: ' + event.url); });
+	         // popup.addEventListener('loaderror', function(event) { alert('error: ' + event.message); });
+	         // popup.addEventListener('exit', function(event) { alert(event.type); });
         }
         
     	var selAccountId = "";

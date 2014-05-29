@@ -25,6 +25,7 @@ d:\jQueryMobile\budgetTracker\platforms\android\assets\www\index.html_old2 \
 d:\jQueryMobile\budgetTracker\platforms\android\assets\www\js \
 d:\jQueryMobile\budgetTracker\platforms\android\assets\www\lib \
 d:\jQueryMobile\budgetTracker\platforms\android\assets\www\phonegap.js \
+d:\jQueryMobile\budgetTracker\platforms\android\assets\www\popup.html \
 d:\jQueryMobile\budgetTracker\platforms\android\assets\www\res \
 d:\jQueryMobile\budgetTracker\platforms\android\assets\www\spec \
 d:\jQueryMobile\budgetTracker\platforms\android\assets\www\templates \

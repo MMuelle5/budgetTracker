@@ -7,7 +7,8 @@ var AppRouter = Backbone.Router.extend({
         "options":"options",
         "changeBalance":"changeBalance",
         "changeAccount":"changeAccount",
-        "addAccount":"addAccount"
+        "addAccount":"addAccount",
+        "login":"login"
     },
 
     initialize:function () {
@@ -47,6 +48,10 @@ var AppRouter = Backbone.Router.extend({
         console.log('#addAccount');
         this.checkLoggedIn(new AddAccountView({model: new AccountModel()}),true);
     },
+    login:function() {
+        console.log('#login');
+		$that.changePage(new LoginView());
+    },
     
 
     changePage:function (page) {
@@ -70,7 +75,7 @@ var AppRouter = Backbone.Router.extend({
     		$retVal = JSON.parse(data);
     		console.log($retVal);
 		    if(!$retVal.login) {
-		    	launchBrowser();
+		    	// launchBrowser();
 		        // console.log('#login');
 		        // this.changePage(launchBrowser());
 		        $isLoggedIn = false;
