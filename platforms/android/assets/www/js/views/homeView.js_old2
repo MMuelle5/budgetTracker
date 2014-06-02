@@ -4,13 +4,13 @@ window.HomeView = Backbone.View.extend({
 		var that = this;
 		this._positionViews = [];
 
-		this.collection.each(function(pos) {
-			// console.log(pos);
-			that._positionViews.push(new PositionView({
-				model : pos,
-				tagName : 'tr'
-			}))
-		});
+		// this.collection.each(function(pos) {
+			// // console.log(pos);
+			// that._positionViews.push(new PositionView({
+				// model : pos,
+				// tagName : 'tr'
+			// }))
+		// });
 	},
 	template : _.template($('#home').html()),
 

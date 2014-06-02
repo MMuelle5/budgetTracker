@@ -1,5 +1,5 @@
 window.PositionView = Backbone.View.extend({
-	
+	tagName : 'tr',
     initialize: function() {
     },
     
