@@ -4,6 +4,7 @@
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/jquery.mobile-1.0.1.min.css"/>
+    <link rel="stylesheet" href="css/custom.css"/>
 
     <!-- The Templates -->
     <script type="text/template" id="login">
@@ -12,19 +13,15 @@
             <h1>Einloggen</h1>
             <a href="#" onclick="launchBrowser();" class="ui-btn-right">Login</a>
         </div>
-<!-- 	<a href="#" onclick="console.log('geklickt!');window.plugins.childBrowser.openExternal('http://localhost/rest/login.php')">einloggen</a> -->
-	
 		Bitte loggen Sie sich ein.<br/>
 		<a href="#" onclick="launchBrowser();" class="ui-btn">Login</a>
-            
-<!-- 		<a href="#loginPopup" class="ui-btn" data-rel="popup"  data-position-to="window">Login</a> -->
     	
     </script>
     	
     <script type="text/template" id="home">
 
         <div data-role="header">
-            <h1>Kontof&uuml;hrung - &Uuml;bersicht</h1>
+            <h1 id="homeTitle"></h1>
             <a href="#" onclick="launchBrowser();" class="back ui-btn-right">Login</a>
         </div>
 
@@ -64,19 +61,17 @@
         </div>
 
         <div data-role="content">
-            <!-- <ul data-role="listview" data-inset="true">
-                <li><a href="#">Home</a></li>
-                <li><a href="#page1">Page 1</a></li>
-            </ul> -->
-            <div id="exceptions" style="visibility: hidden;">
+             <div id="exceptions" style="visibility: hidden;">
             	<h3>Exceptions</h3>
             	<ul id="exceptionList"></ul>
             </div>
             <table>
             	<tr>
-            		<td colspan="2">
-            			<input type="radio" name="type" value="Einzahlen" checked="checked">Einzahlen</input>
-            			<input type="radio" name="type" value="Abheben">Abheben</input>
+            		<td colspan="2">    
+            			<select name="type" id="type">
+            				<option value="Einzahlen">Einzahlen</option>
+            				<option value="Abheben">Abheben</option>
+	            		</select>
             		</td>
             	</tr><tr>
             		<td>Bezeichnung: </td>
@@ -101,9 +96,9 @@
     
     <script type="text/template" id="listElem">
 	
-		<td><%= title %></td>
-		<td style="text-align: right;"><%= deposit %></td>
-		<td style="text-align: right;"><%= liftOff %></td>
+		<td class="leftOnly"><%= title %></td>
+		<td class="leftOnly" style="text-align: right;"><%= deposit %></td>
+		<td class="rightLeft" style="text-align: right;"><%= liftOff %></td>
 	
     </script>
     
@@ -137,9 +132,7 @@
     <script type="text/javascript" charset="utf-8" src="../cordova-3.4.0.js"></script>
     <script src="lib/underscore-min.js"></script>
     <script src="lib/backbone-min.js"></script>
-<!--     <script src="lib/cordova.js"></script> -->
-    <script src="lib/phonegap.js"></script>
-<!--     <script src="lib/childBrowser.js"></script>      -->
+<!--     <script src="lib/phonegap.js"></script> -->
     <script src="js/models/positionModel.js"></script>
     <script src="js/models/positionCollection.js"></script>
     <script src="js/models/accountModel.js"></script>
@@ -202,6 +195,7 @@
         }
         
     	var selAccountId = "";
+    	var selAccountName = "";
     </script>
     
 	<script src="js/main.js"></script>

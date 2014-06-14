@@ -1,5 +1,6 @@
 window.PositionColView = Backbone.View.extend({
 	tagName : 'table',
+	className: 'ui-responsive table-stroke ui-table ui-table-reflow',
 	
 	
     initialize: function() {
@@ -12,11 +13,11 @@ window.PositionColView = Backbone.View.extend({
     },
     
 	render: function() {
-      this.$el.html("<tr><td style='font-weight: bold'>Titel</td><td style='font-weight: bold'>Zufluss</td><td style='font-weight: bold'>Abfluss</td>");
+      this.$el.html("<tr class='beginEnd'><td class='leftOnly'>Titel</td><td class='leftOnly'>Zufluss</td><td class='rightLeft'>Abfluss</td>");
 	  this.collection.forEach(this.addOne, this);
 	  posModel = new PositionModel();
 	  posModel.set({title:"Total", deposit: this.totalDeposit.toFixed(2), liftOff: this.totalLiftOff.toFixed(2)});
-	  var positionView = new PositionView({model: posModel});
+	  var positionView = new PositionView({model: posModel, className: "beginEnd"});
 	  this.$el.append(positionView.render().el);
 	  return this;
 	},
@@ -26,7 +27,7 @@ window.PositionColView = Backbone.View.extend({
 			this.totalDeposit = parseFloat(this.totalDeposit) + parseFloat(posItem.toJSON()['deposit']);
 		}
 		if(posItem.toJSON()['liftOff'] != null) {
-			this.totalLiftOff += parseFloat(this.totalLiftOff) + parseFloat(posItem.toJSON()['liftOff']);
+			this.totalLiftOff = parseFloat(this.totalLiftOff) + parseFloat(posItem.toJSON()['liftOff']);
 		}
 		var positionView = new PositionView({model: posItem});
 		this.$el.append(positionView.render().el);

@@ -34,6 +34,19 @@ window.ChangeAccountView = Backbone.View.extend({
 	change: function() {
 		$account = this.$el.find($("#accSel")).val();
 		selAccountId = $account;
+		
+		$.ajax({
+		    url: 'http://www.moledor.ch/rest/v1/accounts/'+selAccountId,
+			dataType: 'jsonp',
+		    success: function (data) {
+				console.log(data);
+				selAccountName = data["accountName"];
+				app.navigate("options", true);
+			},
+			error: function(msg) {
+				console.log(msg);
+			}
+		  });
 		app.navigate("options", true);
 	}
 });

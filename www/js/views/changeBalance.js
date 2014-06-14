@@ -11,7 +11,7 @@ window.ChangeBalanceView = Backbone.View.extend({
 	saveRecord: function() {
 		$title = this.$el.find($("#title")).val();
 		$amount = this.$el.find($("#amount")).val();
-		$type = this.$el.find($("input:[name=type]:checked")).val();
+		$type = this.$el.find($("#type")).val();
 		
 		$exceptions = "";
 		if(isNaN($amount)) {

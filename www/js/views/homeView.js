@@ -14,6 +14,10 @@ window.HomeView = Backbone.View.extend({
 		that.$el.find(".contentTable").html("");
 		that.$el.find(".contentTable").append(posColView.render().el);
 		
+		console.log(selAccountName);
+		that.$el.find("#homeTitle").html(selAccountName);
+		console.log($("#homeTitle"));
+		
 		return that;
 	}
 });

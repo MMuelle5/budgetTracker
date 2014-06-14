@@ -1,0 +1,5 @@
+table { border-collapse: collapse; }
+tr {border: none;}
+tr.beginEnd {font-weight: bold; border-top: solid 2px black; border-bottom: solid 2px black;}
+td.leftOnly{border-left: solid 2px black;padding: 5px 5px 5px 5px;}
+td.rightLeft{border-left: solid 2px black;border-right: solid 2px black;padding: 5px 5px 5px 5px;}
